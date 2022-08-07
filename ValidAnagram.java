@@ -37,23 +37,3 @@ class Solution {
 } 
 
 */
-
-
-/*
-class Solution {
-    public boolean isAnagram(String s, String t) {
-        char[] str = s.toCharArray();
-        char[] ttr = t.toCharArray();
-        
-        Arrays.sort(str);
-        Arrays.sort(ttr);
-        String sol1 = new String(str);
-        String sol2 = new String(ttr);
-        
-        if(sol1.equals(sol2))
-            return true;
-        
-        else return false;
-    }
-}
-*/
