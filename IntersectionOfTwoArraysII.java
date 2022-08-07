@@ -1,21 +1,20 @@
 // Approach 1: Dynamic Programming (100% Faster)
 class Solution {
     public int[] intersect(int[] nums1, int[] nums2) {
-        int[] dp = new int[1000+1];
-        for(int i: nums1){
-            dp[i]++;
+        int[] dp = new int[1000+1]; // Max constaints Constaints + 1
+        for(int i : nums1){
+            dp[i]++;    
         }
-        int ptr =0;
-        int ans[] = new int[1000+1];
-        for(int i:nums2){
-            if(dp[i]!= 0){
-                ans[ptr]= i;
-                ptr++;
+        int[] res = new int[Math.min(nums1.length, nums2.length)];
+        int pointer = 0;
+        for(int i : nums2){
+            if(dp[i] != 0){
+                res[pointer] = i;
+                pointer++;
                 dp[i]--;
             }
-                        
         }
-        return Arrays.copyOfRange(ans,0,ptr);
+        return Arrays.copyOfRange(res, 0, pointer);
     }
 }
 
