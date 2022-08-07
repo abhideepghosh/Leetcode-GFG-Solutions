@@ -1,35 +1,61 @@
+// Approach 1: Dynamic Programming (100% Faster)
 class Solution {
     public int[] intersect(int[] nums1, int[] nums2) {
-//      Approach 1:        
-        if(nums1.length ==0 ||  nums2.length==0){
-            return new int[] {};
+        int[] dp = new int[1000+1];
+        for(int i: nums1){
+            dp[i]++;
         }
-        
-        int i=0, j=0, k=0;
-        int[] sol = new int[Math.min(nums1.length, nums2.length)];
-        Arrays.sort(nums1);
-        Arrays.sort(nums2);
-        
-        while(i<nums1.length && j<nums2.length){
-            if(nums1[i]==nums2[j]){
-                sol[k] = nums1[i];
-                k++;
-                i++;
-                j++;
-            }else if(nums1[i]<nums2[j]){
-                i++;
-            }else{
-                j++;
+        int ptr =0;
+        int ans[] = new int[1000+1];
+        for(int i:nums2){
+            if(dp[i]!= 0){
+                ans[ptr]= i;
+                ptr++;
+                dp[i]--;
             }
+                        
         }
+        return Arrays.copyOfRange(ans,0,ptr);
+    }
+}
+
+
+
+// //      Approach 2: More Optimized Than The Brute Force Solution:
+// class Solution {
+//     public int[] intersect(int[] nums1, int[] nums2) {
         
-        int[] output = new int[k];
-        for(int a=0; a<k; a++){
-            output[a] = sol[a];
-        }
+//         if(nums1.length ==0 ||  nums2.length==0){
+//             return new int[] {};
+//         }
         
-        return output;
-//         Approach 2:        
+//         int i=0, j=0, k=0;
+//         int[] sol = new int[Math.min(nums1.length, nums2.length)];
+//         Arrays.sort(nums1);
+//         Arrays.sort(nums2);
+        
+//         while(i<nums1.length && j<nums2.length){
+//             if(nums1[i]==nums2[j]){
+//                 sol[k] = nums1[i];
+//                 k++;
+//                 i++;
+//                 j++;
+//             }else if(nums1[i]<nums2[j]){
+//                 i++;
+//             }else{
+//                 j++;
+//             }
+//         }
+        
+//         int[] output = new int[k];
+//         for(int a=0; a<k; a++){
+//             output[a] = sol[a];
+//         }
+        
+//         return output;
+
+
+//         Approach 3:        
 //         List<Integer> list = new ArrayList<>();
 //         for(int i=0; i<nums1.length; i++){
 //             for(int j = 0; j<nums2.length; j++){
