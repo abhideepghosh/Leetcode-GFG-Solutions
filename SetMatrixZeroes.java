@@ -2,6 +2,7 @@
 Runtime: 1 ms, faster than 97.40% of Java online submissions for Set Matrix Zeroes.
 Memory Usage: 54 MB, less than 57.42% of Java online submissions for Set Matrix Zeroes.
 */
+// TC: O(N*M) | SC: O(1)
 class Solution {
     public void setZeroes(int[][] matrix) {
         Boolean isCol = false;
@@ -38,7 +39,7 @@ class Solution {
     }
 }
 
-// TC : O(N*M) SC: O(N+M)
+// TC : O(N*M) | SC: O(N+M)
 class Solution {
     public void setZeroes(int[][] matrix) {
         HashSet<Integer> rows = new HashSet<>();
