@@ -20,7 +20,7 @@ class Solution {
         
 }
 */
-//Optimised O(logn) Approach
+//Optimised O(nlogn) Approach
 class Solution {
     public String longestCommonPrefix(String[] strs) {
                 if (strs == null || strs.length == 0) {
