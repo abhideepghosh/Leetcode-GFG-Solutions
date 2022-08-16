@@ -1,5 +1,12 @@
+//Optimised Solution TC: O(n)
 /*
-//Brute Force
+  TC: O(n) Explanation:
+    1. In Constraints, the length of the string cannot be more than 200;
+    2. In Constraints, the length of the String Array cannot be more than 200 as well.
+    
+Runtime: 0 ms, faster than 100.00% of Java online submissions for Longest Common Prefix.
+Memory Usage: 42.3 MB, less than 45.62% of Java online submissions for Longest Common Prefix.
+*/
 class Solution {
     public String longestCommonPrefix(String[] strs) {
         
@@ -19,8 +26,9 @@ class Solution {
     }
         
 }
-*/
-//Optimised O(nlogn) Approach
+
+/*
+//Brute Force O(nlogn) Approach
 class Solution {
     public String longestCommonPrefix(String[] strs) {
                 if (strs == null || strs.length == 0) {
@@ -40,3 +48,4 @@ class Solution {
         return result.toString();
     }
 }
+*/
