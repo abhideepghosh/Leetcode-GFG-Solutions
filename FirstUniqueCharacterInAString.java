@@ -16,7 +16,7 @@ class Solution {
 }
 
 /*
-// Brute Force TC: O(n) SC: O(n)
+// Brute Force TC: O(n) SC: O(1)
 class Solution {
     public int firstUniqChar(String s) {
         HashMap<Character, Integer> map = new HashMap<>();
