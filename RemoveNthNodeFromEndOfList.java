@@ -8,6 +8,7 @@
  *     ListNode(int val, ListNode next) { this.val = val; this.next = next; }
  * }
  */
+// Calculate Size Method : 100% Faster
 class Solution {
     public ListNode removeNthFromEnd(ListNode head, int n) {
         
@@ -39,5 +40,32 @@ class Solution {
         
         return head;
         
+    }
+}
+
+
+// Two Pointer Method : 100% Faster
+class Solution {
+    public ListNode removeNthFromEnd(ListNode head, int n) {
+        ListNode aheadPointer = head;
+        ListNode backPointer = head;
+        
+        while(n >= 0 && aheadPointer != null){
+            aheadPointer = aheadPointer.next;
+            n--;
+        }
+        
+        if(n >= 0){
+            return head.next;
+        }
+        
+        while(aheadPointer != null){
+            aheadPointer = aheadPointer.next;
+            backPointer = backPointer.next;
+        }
+        
+        backPointer.next = backPointer.next.next;
+        
+        return head;
     }
 }
