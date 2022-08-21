@@ -22,7 +22,7 @@ class Solution {
             return result;
         }
         
-        // Formation Of Pascal's Triangle for NumRows > 3
+        // Formation Of Pascal's Triangle for NumRows >= 3
         for(int i = 3; i <= numRows; i++){
            
             List<Integer> nums = new ArrayList<Integer>();
