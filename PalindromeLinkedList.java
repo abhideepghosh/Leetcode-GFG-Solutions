@@ -8,6 +8,7 @@
  *     ListNode(int val, ListNode next) { this.val = val; this.next = next; }
  * }
  */
+// Optimised Solution TC: O(n) | SC: O(1)
 class Solution {
     public boolean isPalindrome(ListNode head) {
         
@@ -52,4 +53,60 @@ class Solution {
         return previousNode;
     }
     
+}
+
+
+
+// Brute Force Solution TC: O(n) | SC: O(1)
+class Solution {
+    public boolean isPalindrome(ListNode head) {
+        
+        // Handling Edge Cases
+        if(head == null || head.next == null){
+            return true;
+        }
+        
+        ListNode traverseNode = head;
+        int size = 0;
+        
+        // Calculating Size Of The Linked List
+        while(traverseNode != null){
+            traverseNode = traverseNode.next;
+            size++;
+        }
+        
+        //Finding The Mid Of The Linked List
+        size = size/2;
+        int n = size;
+        
+        traverseNode = head;
+        
+        while(size != 0){
+            traverseNode = traverseNode.next;
+            size--;
+        }
+        
+        // Reversing The Linked List From The Mid To The End
+        ListNode previousNode = null;
+        
+        while(traverseNode != null){
+            ListNode next = traverseNode.next;
+            traverseNode.next = previousNode;
+            previousNode = traverseNode;
+            traverseNode = next;
+        }
+        
+        traverseNode = head;
+        
+        //Comparing The Values Of The First Half With The Second Half Of The Linked List
+        while(n != 0){
+            if(traverseNode.val != previousNode.val){
+                return false;
+            }
+            traverseNode = traverseNode.next;
+            previousNode = previousNode.next;
+            n--;
+        }
+        return true;
+    }
 }
