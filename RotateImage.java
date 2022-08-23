@@ -16,7 +16,7 @@ class Solution {
         
         int numRows = matrix.length;
         
-        // Transpose The Matrix
+        // Transpose Of The Matrix
         for(int i=0; i<numRows; i++){
             for(int j=i; j<numRows; j++){
                 
