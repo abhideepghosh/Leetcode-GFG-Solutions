@@ -1,31 +1,37 @@
-class Solution{
-    
-   
-    // Function for finding maximum and value pair
-    public static int lenOfLongSubarr (int A[], int N, int K) {
-        //Complete the function
-        Map<Integer, Integer> map = new HashMap<>();
-        int maxLength = 0;
-        int sum = 0;
+class Solution {
+    public int lengthOfLongestSubstring(String s) {
         
-        for(int i=0; i<N; i++){
-            sum += A[i];
+        // HashSet Used To Store Unique Characters
+        HashSet<Character> set = new HashSet<>();
+        
+        //2 Pointers Defined
+        int stablePointer = 0;
+        int unstablePointer = 0;
+        
+        // To Store The Maximum Length Of Unique Characters In The HashSet
+        int maxSize = 0;
+        
+        // 2 Pointer Method: Window - Unique Characters Between The Stable And Unstable Pointers
+        while(unstablePointer < s.length()){
             
-            if(sum == K){
-                maxLength = i+1;
+            // If The Character Is Not Present In The HashSet, Then We Add It
+            // If Present Then We Delete Its Previous Occurence
+            if(!set.contains(s.charAt(unstablePointer))){
+                set.add(s.charAt(unstablePointer));
+                unstablePointer++;
+            }else{
+                set.remove(s.charAt(stablePointer));
+                stablePointer++;
             }
             
-            if(!map.containsKey(sum)){
-                map.put(sum, i);
+            // Keeping Track Of The Maximum Length Reached In The HashSet At Every Iteration
+            if(maxSize < set.size()){
+                maxSize = set.size();
             }
-            if(map.containsKey(sum - K)){
-                if(maxLength < (i - map.get(sum - K))){
-                    maxLength = i-map.get(sum - K);
-                }
-            }
+            
         }
-        return maxLength;
+        
+        // Returning Max Size Of The HashSet Reached During The Iterations
+        return maxSize;
     }
-    
-    
 }
