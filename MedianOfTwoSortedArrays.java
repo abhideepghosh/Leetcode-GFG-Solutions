@@ -48,6 +48,9 @@ class Solution {
 
 
 /*
+Runtime: 2 ms, faster than 100.00% of Java online submissions for Median of Two Sorted Arrays.
+Memory Usage: 43 MB, less than 98.54% of Java online submissions for Median of Two Sorted Arrays.
+
 Approach 2: Optimized TC: O(logn) SC: O(1) Solution Using Binary Search
     1. We Use Binary Search To Create Partitions In Both The Sorted Arrays
     2. We Check If The Left And Rights Of The Partition Satisfies The Conditions Which Are Written In Comments Below.
