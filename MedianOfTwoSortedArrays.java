@@ -1,5 +1,5 @@
 /*
-Approach 1: Brute Force
+Approach 1: Brute Force TC: O(n) SC: O(n)
     1. We Merge The Two Sorted Array (Basic Merging Method Of Merge Sort, With 2 Pointers.
     2. We Find The Median Of The New Array.
 */
