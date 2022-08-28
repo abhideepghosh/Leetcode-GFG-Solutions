@@ -1,10 +1,16 @@
-//Approach 1: Brute Force
+/*
+Approach 1: Brute Force
+    1. We Merge The Two Sorted Array.
+    2. We Find The Median Of The New Array.
+*/
 class Solution {
     public double findMedianSortedArrays(int[] nums1, int[] nums2) {
+        
         int nums1Pointer = 0;
         int nums2Pointer = 0;
         int numsPointer = 0;
         int[] nums = new int[nums1.length + nums2.length];
+        
         while(nums1Pointer < nums1.length && nums2Pointer < nums2.length){
             if(nums1[nums1Pointer] < nums2[nums2Pointer]){
                 nums[numsPointer] = nums1[nums1Pointer];
@@ -15,11 +21,13 @@ class Solution {
             }
             numsPointer++;
         }
+        
         while(nums1Pointer<nums1.length){
             nums[numsPointer] = nums1[nums1Pointer];
             numsPointer++;
             nums1Pointer++;
         }
+        
         while(nums2Pointer<nums2.length){
             nums[numsPointer] = nums2[nums2Pointer];
             numsPointer++;
