@@ -70,3 +70,44 @@ class Solution {
         
     }
 }
+
+
+// Most Efficient Optimisation, Final Interview Answer TC: O(n) SC: O(1)
+/*
+Runtime: 1 ms, faster than 100.00% of Java online submissions for Product of Array Except Self.
+Memory Usage: 50.5 MB, less than 94.30% of Java online submissions for Product of Array Except Self.
+*/
+/*
+   The Approach Of The Better Optimised Solution And The Most Optimised Solution Is The Same Except We Solve It
+   In Constant Space O(1)
+   
+   Approach:
+   1. Multiply everything to the left of every element in the array (We take 1 as the multiplication of everything
+      to the left of the first element in the array).
+   2. We multiply everything to the right of every element in the array (keeping 1 as the multiplication of everything
+      to the right of the last element in the array).
+   3. We Multiply the leftProducts With The rightProducts and store the value in the result array.
+   4. We Return The Result Array
+*/
+class Solution {
+    public int[] productExceptSelf(int[] nums) {
+
+        int numsLength = nums.length;
+        int[] result = new int[numsLength];
+        int rightProduct = 1;
+        
+        result[0] = 1;
+       
+        for(int i=1; i<numsLength; i++){
+            result[i] = result[i-1] * nums[i-1];
+        }
+        
+        for(int i=numsLength-1; i>=0; i--){
+            result[i] *= rightProduct;
+            rightProduct *= nums[i];
+        }
+        
+        return result;
+        
+    }
+}
