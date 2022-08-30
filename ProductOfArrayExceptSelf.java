@@ -1,38 +1,72 @@
+// Brute Force Solution TC: O(n^2) SC: O(1) (TLE)
+/*
+   Approach:
+    1. We Calculate The Product On Every Iteration of Outer Loop, The Product In The Inner Loop
+    2. The Only Condition We Put Is When Index Of i And j Are Equal, We Skip The Value In Product
+*/
 class Solution {
     public int[] productExceptSelf(int[] nums) {
-        int[] output = new int[nums.length];
-        int zeros = 0;
-        for(int num : nums) {
-            if(num==0) {
-                zeros++;
-            }
-        }
-        if(zeros==1) {
-            int prod = 0;
-            int ind = 0;
-            for(int i = 0; i < nums.length; i++) {
-                if(prod==0) {
-                    prod = nums[i];
-                } else if(nums[i]!=0) {
-                    prod*=nums[i];
-                } else {
-                    ind = i;
+        
+        int[] result = new int[nums.length];
+        
+        for(int i=0; i<nums.length; i++){
+            
+            int product = 1;
+            
+            for(int j=0; j<nums.length; j++){
+                
+                if(i != j){
+                    product *= nums[j];
                 }
+                result[i] = product;
             }
-            output[ind] = prod;
-        } else if(zeros<1){
-            int mainProd = 0;
-            for(int i = 0; i < nums.length; i++) {
-                if(mainProd==0) {
-                    mainProd = nums[i];
-                } else {
-                    mainProd*=nums[i];
-                }
-            }
-            for(int i = 0; i < nums.length; i++) {
-                output[i]=mainProd/nums[i];
-            }
+            
         }
-        return output;
+        
+        return result;
+        
+    }
+}
+
+
+// Better Optimisation TC: O(n) SC: O(n) + O(n) (2 extra arrays other than the return array)
+/*
+Runtime: 1 ms, faster than 100.00% of Java online submissions for Product of Array Except Self.
+Memory Usage: 50.6 MB, less than 90.85% of Java online submissions for Product of Array Except Self.
+*/
+/*
+   Approach:
+   1. Multiply everything to the left of every element in the array (We take 1 as the multiplication of everything
+      to the left of the first element in the array).
+   2. We multiply everything to the right of every element in the array (keeping 1 as the multiplication of everything
+      to the right of the last element in the array).
+   3. We Multiply the leftProducts With The rightProducts and store the value in the result array.
+   4. We Return The Result Array
+*/
+class Solution {
+    public int[] productExceptSelf(int[] nums) {
+
+        int numsLength = nums.length;
+        int[] result = new int[numsLength];
+        int[] leftProduct = new int[numsLength];
+        int[] rightProduct = new int[numsLength];
+        
+        leftProduct[0] = 1;
+        rightProduct[numsLength - 1] = 1;
+        
+        for(int i=1; i<numsLength; i++){
+            leftProduct[i] = leftProduct[i-1] * nums[i-1];
+        }
+        
+        for(int i=numsLength-2; i>=0; i--){
+            rightProduct[i] = rightProduct[i+1] * nums[i+1];
+        }
+        
+        for(int i=0; i<numsLength; i++){
+            result[i] = leftProduct[i] * rightProduct[i];
+        }
+        
+        return result;
+        
     }
 }
