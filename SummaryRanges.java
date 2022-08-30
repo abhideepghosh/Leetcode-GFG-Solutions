@@ -9,7 +9,7 @@ class Solution {
         // For Storing And Returning Result
         List<String> result = new ArrayList<>();
         
-        // Iterating Through The Loop
+        // Iterating Through The Array
         for(int i=0; i<nums.length; i++){
             
             /*
