@@ -3,7 +3,7 @@ Runtime: 0 ms, faster than 100.00% of Java online submissions for Search a 2D Ma
 Memory Usage: 42.3 MB, less than 82.03% of Java online submissions for Search a 2D Matrix.
 */
 
-// Time Complexity O(n) * O(logn) = O(nlogn)
+// Time Complexity O(n) + O(logn) as Once we find the row traversing row by row, we only need to search in that specific row
 class Solution {
     public boolean searchMatrix(int[][] matrix, int target) {
         
