@@ -26,7 +26,7 @@ class Solution {
             }
             
         }
-        // Defauly Return Statement As False In Case The Element Was Not Found In The 2D Matrix
+        // Default Return Statement As False In Case The Element Was Not Found In The 2D Matrix
         return false;
         
     }
