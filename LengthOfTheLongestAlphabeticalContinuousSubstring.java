@@ -1,37 +1,55 @@
-//Sliding Window
+// Optimised Solution TC: O(N) SC: O(1)
 class Solution {
     public int longestContinuousSubstring(String s) {
-        // abcaba
-        int left=0,right=0;
-        int max=1;  // min answer will be 1
-        int start=s.charAt(right)-'0';   // find the initial value of the character
-        right++; 
-        int next=start+1;  // to find out what should be the next value.
-          
-		  // start of sliding window logic
-        while(right<s.length()){
-            
-            int current=s.charAt(right)-'0'; 
-            
-			// if this satisfy then it should be part of consecutive substring 
-            if(current==next) {
-                next++; 
-                max=Math.max( max, right-left+1);
-            }else{
-			// start again with new current value.
-                left=right;
-                next=current+1;
-            }
-            right++;
+        
+        // Handling Edge Cases
+        if(s.length() == 0){
+            return 0;
         }
         
-        return max;
+        // Handling Edge Cases
+        if(s.length() == 1){
+            return 1;
+        }
+        
+        // Taking 2 Pointers -> Front Being 1 Ahead Of Rear
+        // We Use A Sliding Window Of Gap 1 To Check Current And Next Character
+        int front = 1;
+        int rear = 0;
+        
+        // Since We Now Know After The Edge Cases Being Handled, That There Will Be More Than 1 Character
+        // We Can Iterate Over Characters. We Start Count With 1 As We Take The Frequency Of Current Character In The Sum Count
+        // count Will Store The Value Of Length On Every Iteration
+        // maxCount Will Store The Maximum Length
+        int maxCount = 1;
+        int count = 1;
+        
+        // Iterating With A Sliding Window Of Gap 1
+        while(front < s.length()){
+            // If CurrentChar + 1 Equals Next Char, Then We Increment Count
+            if(s.charAt(rear) + 1 == s.charAt(front)){
+                count++;
+                rear++;
+                front++;
+                maxCount = Math.max(maxCount, count); // Storing The Max Length Reached By count In maxCount
+            }
+            // Else We Reset Count
+            else{
+                rear = front;
+                front++;
+                count = 1;
+            }
+        }
+        
+        // Returning The maxCount -> maxLength Substring Found
+        return maxCount;
+        
     }
 }
 
 
 
-//Using Stack
+//Another Approach Using Stack TC: O(N) SC: O(N)
 class Solution {
     public int longestContinuousSubstring(String s) {
         int len = s.length();
