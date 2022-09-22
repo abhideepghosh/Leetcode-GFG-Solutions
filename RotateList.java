@@ -13,7 +13,7 @@ Runtime: 0 ms, faster than 100.00% of Java online submissions for Rotate List.
 Memory Usage: 41.5 MB, less than 97.02% of Java online submissions for Rotate List.
 */
 
-// Optimized Solution
+// Optimized Solution TC: O(N) SC: O(1)
 class Solution {
     public ListNode rotateRight(ListNode head, int k) {
         
