@@ -35,6 +35,59 @@ class Solution {
     }
 }
 
+
+
+class Solution {
+    public List<Integer> findAnagrams(String s, String p) {
+        
+        // Char Frequency Map
+        int[] charCountS = new int[26];
+        int[] charCountP = new int[26];
+        
+        // For Storing Result
+        List<Integer> result = new ArrayList<>();
+        
+        // Storing Frequency Of Characters Of P String
+        for(char c : p.toCharArray()){
+            charCountP[c - 'a']++;
+        }
+        
+        // 2 Pointers Which Will Move Maintaining The Window Of Length P
+        int start = 0;
+        int end = 0;
+        
+        // Traversing Through The Loop
+        while(end < s.length()){
+            
+            // Adding Frequency To The Map
+            charCountS[s.charAt(end) - 'a']++;
+            
+            // Window Length - 1 For Index
+            if(end >= p.length() - 1){
+                
+                // Because The Loop Runs Only 26 Time, We Consider It Constant TIme And Not Add It To Time Complexity
+                if(Arrays.equals(charCountS, charCountP)){
+                    // Adding Starting Index
+                    result.add(start);
+                }
+                
+                // Removing Starting Character And Incrementing Start
+                charCountS[s.charAt(start)-'a']--;
+                start++;
+                
+            }
+            
+            // Incrementing End
+            end++;
+            
+        }
+        
+        // Returning Result
+        return result;
+        
+    }
+}
+
 // Sorting Approach --> Should not be done --> will end up with TLE For extremely large strings
 /*
 class Solution {
