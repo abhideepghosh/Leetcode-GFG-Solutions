@@ -47,27 +47,31 @@ class Solution {
 //One Loop Method: 100% Faster
 class Solution {
     public ListNode removeNthFromEnd(ListNode head, int n) {
-        ListNode currentNode = head;
         
-        ListNode ansNode = head;
+        int index = 1;
         
-        int x = 1;
-        while(currentNode.next!=null)
-        {
-            currentNode=currentNode.next;
-            x++;
-            if(x>n+1)
-            {
-                head = head.next;
+        ListNode traverseNode = head;
+        ListNode deleteNode = head;
+        
+        while(traverseNode.next != null){
+            
+            traverseNode = traverseNode.next;
+            index++;
+            
+            if(index > n + 1){
+                deleteNode = deleteNode.next;
             }
+            
         }
-        if(x<n+1)
-        {
-            return ansNode.next;
-        }
-        head.next = head.next.next;
         
-        return ansNode;
+        if(index < n + 1){
+            return head.next; 
+        }
+        
+        deleteNode.next = deleteNode.next.next;
+        
+        return head;
+        
     }
 }
 
