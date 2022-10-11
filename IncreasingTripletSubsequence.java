@@ -1,31 +1,33 @@
-// Optimised Solution TC: O(n) SC: O(1)
+/*
+Runtime: 2 ms, faster than 99.05% of Java online submissions for Increasing Triplet Subsequence.
+Memory Usage: 84.1 MB, less than 90.54% of Java online submissions for Increasing Triplet Subsequence.
+*/
+// Optimized Solution TC: O(N) SC: O(1)
 class Solution {
     public boolean increasingTriplet(int[] nums) {
         
-        // For Finding The First Number
-        int firstNumber = Integer.MAX_VALUE;
+        // Taking 2 Variables With Integer Max Values
+        int first = Integer.MAX_VALUE;
+        int second = Integer.MAX_VALUE;
         
-        // For Finding The Second Number
-        int secondNumber = Integer.MAX_VALUE;
-        
-        
-        for(int num : nums){
+        // Iterating Through The Array
+        for(int i=0; i<nums.length; i++){
             
-            // All the Larger Numbers Will Be Stored In The First Number Till The Smallest First Number Is Found
-            if(num <= firstNumber){
-                firstNumber = num;
+            // We Check For 2 Elements Following The Sequence In Increasing Order Or Are Same Values
+            if(first >= nums[i]){
+                first = nums[i];
             }
-            // Then We Move To The Next Greater Number
-            else if(num <= secondNumber){
-                secondNumber = num;
+            else if(second >= nums[i]){
+                second = nums[i];
             }
-            // If We Find A Third Greater Number, Rather Than Storing It, We Return True
+            // If We Find A Third Element Greater Than Or Equal To The Second Value, We Return True Rather Than Storing It
             else{
                 return true;
             }
+            
         }
         
-        // Else We Return False
+        // If The Return True Clause Was Never Called, Hence The Pair Doesn't Exist, Hence We Return False
         return false;
         
     }
