@@ -1,3 +1,25 @@
+/*
+Runtime: 0 ms, faster than 100.00% of Java online submissions for Min Cost Climbing Stairs.
+Memory Usage: 41.9 MB, less than 93.32% of Java online submissions for Min Cost Climbing Stairs.
+*/
+// Greedy Algorithm TC: O(N) SC: O(1)
+class Solution {
+    
+    public int minCostClimbingStairs(int[] cost) {
+        
+        // Finding Min Of Last Two Element And Adding It With Current Element
+        for(int i=2; i<cost.length; i++){
+            cost[i] += Math.min(cost[i-1], cost[i-2]);
+        }
+        
+        // Returning The Minimum Of Last 2 Modified Element
+        return Math.min(cost[cost.length - 1], cost[cost.length - 2]);
+        
+    }
+}
+
+
+
 class Solution {
     public int minCostClimbingStairs(int[] cost) {
         
