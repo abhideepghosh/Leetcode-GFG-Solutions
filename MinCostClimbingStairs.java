@@ -20,22 +20,34 @@ class Solution {
 
 
 
+/*
+Runtime: 0 ms, faster than 100.00% of Java online submissions for Min Cost Climbing Stairs.
+Memory Usage: 42.2 MB, less than 86.68% of Java online submissions for Min Cost Climbing Stairs.
+*/
+// Dynamic Programing Tabulation: TC: O(N) SC: O(N)
+// The Only Benefit Of This Approach Is That The Original Array Will Not Be Modified At The Cost Of O(N) Space
 class Solution {
     public int minCostClimbingStairs(int[] cost) {
         
-        if(cost.length ==2){
-            return Math.min(cost[0],cost[1]);
+        // Handling Edge Case
+        if(cost.length == 2){
+            return Math.min(cost[0], cost[1]);
         }
         
-        int arr[] = new int[cost.length+1];
-        arr[0] = 0;
-        arr[1] = 0;
+        // Standard DP Tabulation Template
+        int[] dp = new int[cost.length];
         
-        for(int i=2; i<arr.length; i++){
-            arr[i] = Math.min(arr[i-1]+cost[i-1],arr[i-2]+cost[i-2]);
+        // Initialising First 2 Elements
+        dp[0] = cost[0];
+        dp[1] = cost[1];
+        
+        // Finding THe Min Of Last To Elements And Storing It In The Current Element Of DP After Adding Current Cost
+        for(int i=2; i<dp.length; i++){
+            dp[i] = cost[i] + Math.min(dp[i-1], dp[i-2]);
         }
         
-        return arr[arr.length-1];
+        // Returning The Minimum Of Last 2 DP Elements
+        return Math.min(dp[dp.length - 1], dp[dp.length - 2]);
         
     }
 }
