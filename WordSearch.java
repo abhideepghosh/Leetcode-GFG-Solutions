@@ -2,7 +2,7 @@
 Runtime: 122 ms, faster than 89.01% of Java online submissions for Word Search.
 Memory Usage: 40.1 MB, less than 95.89% of Java online submissions for Word Search.
 */
-// Depth First Search Using Extra Space
+
 class Solution {
     
     boolean visited[][];
