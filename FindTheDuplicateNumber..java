@@ -1,4 +1,4 @@
-// Optimised Solution: TC: O(N) SC: O(1)
+// Optimised Solution Without Modifying The Array: TC: O(N) SC: O(1)
 class Solution {
     public int findDuplicate(int[] nums) {
         int stable = nums[0];
@@ -25,7 +25,7 @@ class Solution {
 
 
 
-// Optimised Solution TC: O(n) SC: O(1)
+// Optimised Solution In One Loop (With Array Modification) TC: O(n) SC: O(1)
 class Solution {
     public int findDuplicate(int[] nums) {
         
