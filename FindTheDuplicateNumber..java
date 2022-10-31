@@ -1,3 +1,30 @@
+// Optimised Solution: TC: O(N) SC: O(1)
+class Solution {
+    public int findDuplicate(int[] nums) {
+        int stable = nums[0];
+        int fast = nums[0];
+        
+        do{
+            
+            stable = nums[stable];
+            fast = nums[nums[fast]];
+            
+        }while(stable != fast);
+        
+        stable = nums[0];
+        
+        while(stable != fast){
+            stable = nums[stable];
+            fast = nums[fast];
+        }
+        
+        return stable;
+        
+    }
+}
+
+
+
 // Optimised Solution TC: O(n) SC: O(1)
 class Solution {
     public int findDuplicate(int[] nums) {
@@ -14,7 +41,7 @@ class Solution {
 }
 
 
-// Better Optimized Solution TC: O(n) SC: O(n)
+// Brute Force Solution TC: O(n) SC: O(n)
 class Solution {
     public int findDuplicate(int[] nums) {
         
