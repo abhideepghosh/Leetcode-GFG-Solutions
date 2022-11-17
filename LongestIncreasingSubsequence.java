@@ -1,3 +1,27 @@
+// TC: O(NlogN) SC: O(N)
+class Solution {
+    public int lengthOfLIS(int[] nums) {
+        TreeSet<Integer> bst = new TreeSet<>();
+        
+        for(int num: nums){
+            
+            Integer data = bst.ceiling(num);
+            
+            if(null!=data){
+                bst.remove(data);
+            }
+            
+            bst.add(num);
+            
+        }
+        
+        return bst.size();
+        
+    }
+}
+
+
+
 // TC: O(n^2) SC: O(n)
 class Solution {
     public int lengthOfLIS(int[] nums) {
