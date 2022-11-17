@@ -1,13 +1,13 @@
 // TC: O(NlogN) SC: O(N)
 class Solution {
     public int lengthOfLIS(int[] nums) {
+        
         TreeSet<Integer> bst = new TreeSet<>();
         
-        for(int num: nums){
-            
+        for(int num : nums){
             Integer data = bst.ceiling(num);
             
-            if(null!=data){
+            if(data != null){
                 bst.remove(data);
             }
             
