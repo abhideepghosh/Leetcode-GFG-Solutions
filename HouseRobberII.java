@@ -39,3 +39,26 @@ class Solution {
         
     }
 }
+
+
+// Swati's Code => Function Based Approach
+class Solution {
+    public int rob(int[] nums) {
+        if(nums.length == 1) return nums[0];
+        if(nums.length == 2) return Math.max(nums[0],nums[1]);
+
+        return Math.max(max(nums,0,nums.length-1),max(nums,1,nums.length)); 
+       
+        
+    }
+    public int max(int[] nums, int start , int end){
+        int[] dp = new int[end+1];
+        dp[start] = 0;
+        dp[start+1] = nums[start];
+
+        for(int i = start+2 ; i <= end ; i++){
+            dp[i] = Math.max(dp[i-1],nums[i-1]+dp[i-2]);
+        }
+        return Math.max(dp[dp.length-1],dp[dp.length-2]);
+    }
+}
