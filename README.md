@@ -1,4 +1,4 @@
 # Leetcode-Solutions
-This repository contains all the Leetcode questions I've solved!
+This repository contains answers to all the Leetcode and GFG questions I've solved!
 
 My Leetcode Profile: https://leetcode.com/AbhideepGhosh/
