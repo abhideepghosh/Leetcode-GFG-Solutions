@@ -3,7 +3,7 @@
  * @param {number} n
  * @returns {number}
 */
-
+// TC: O(logn) SC: O(1)
 class Solution{
     
     findPivot(arr, n) {
