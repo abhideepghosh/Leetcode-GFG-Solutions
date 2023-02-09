@@ -1,7 +1,3 @@
-//User function Template for javascript
-
-
-
 /**
  * @param {string} s
  * @return {string}
