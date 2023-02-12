@@ -1,6 +1,3 @@
-//User function Template for javascript
-
-
 /**
  * @param {string} s
  * @param {string[]} d
@@ -9,27 +6,26 @@
 
 class Solution{
     
-    checkString(s, word) {
-        let wordIndex = 0;
+    compareWord(word, s) {
+        let index = 0;
         for(let i=0; i<s.length; i++) {
-            if(s[i] === word[wordIndex]) wordIndex++;
-            if(wordIndex === word.length) return true;
+            if(word[index] === s[i]) {
+                index++;
+            }
+            if(index === word.length) return true; 
         }
         return false;
     }
     
-    findLongestWord(s, d){
+    findLongestWord(s, words){
         //code here
-        const words = Object.values(d);
         let result = '';
         
         words.sort();
         
         words.forEach((word) => {
             
-            if(this.checkString(s, word)) {
-                result = result.length < word.length ? word : result;        
-            }
+            if(this.compareWord(word, s)) result = result.length < word.length ? word : result;
             
         });
         
