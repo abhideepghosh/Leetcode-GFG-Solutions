@@ -3,7 +3,7 @@
  * @return {number[][]}
  */
 
-// TC: O(N) SC: O(N! * N)
+// TC: O(N! * N) SC: O(N)
 const permutation = (nums, store, result, freq) => {
     if(store.length === nums.length) {
         result.push([...store]);
