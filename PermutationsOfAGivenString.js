@@ -1,3 +1,8 @@
+/**
+ * @param {string} S
+ * @return {string[]}
+ */
+
 class Solution {
     find_permutation(S){
          //code here
