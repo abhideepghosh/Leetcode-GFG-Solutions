@@ -9,7 +9,7 @@
  * @param {ListNode} head
  * @return {ListNode}
  */
-// TC: O(logN) SC: O(N)
+// TC: O(NlogN) SC: O(N)
 const merge = (l1, l2) => {
     let result = new ListNode(0);
     let resultPointer = result;
