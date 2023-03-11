@@ -1,3 +1,4 @@
+// Approach 1
 /**
  * @param {string} S
  * @return {string[]}
@@ -36,7 +37,7 @@ class Solution {
 
 
 
-
+// Approach 2
 /**
  * @param {string} S
  * @return {string[]}
