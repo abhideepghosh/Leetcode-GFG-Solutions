@@ -1,3 +1,10 @@
+//User function Template for javascript
+/**
+ * @param {string} s1
+ * @param {string} s2
+ * @returns {boolean}
+*/
+ 
 class Solution 
 {
     //Function to check if two strings are rotations of each other or not.
