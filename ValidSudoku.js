@@ -3,25 +3,23 @@
  * @return {boolean}
  */
 var isValidSudoku = function(board) {
-    const sudokuSet = new Set();
-
-    for(let i=0; i<board.length; i++){
-        for(let j=0; j<board[0].length; j++){
+    const set = new Set();
+    for(let i=0; i<board.length; i++) {
+        for(let j=0; j<board[i].length; j++) {
             if(board[i][j] !== '.'){
-                if(!sudokuSet.has(`${board[i][j]} row ${i}`) &&
-                !sudokuSet.has(`${board[i][j]} col ${j}`) &&
-                !sudokuSet.has(`${board[i][j]} subBox ${Math.floor(i/3)} - ${Math.floor(j/3)}`)){
-                    sudokuSet.add(`${board[i][j]} row ${i}`);
-                    sudokuSet.add(`${board[i][j]} col ${j}`);
-                    sudokuSet.add(`${board[i][j]} subBox ${Math.floor(i/3)} - ${Math.floor(j/3)}`)
-                }
-                else {
+               if(set.has(`row: ${i} val: ${board[i][j]}`) ||
+                  set.has(`col: ${j} val: ${board[i][j]}`) ||
+                  set.has(`subBox: ${Math.floor(i / 3)} - ${Math.floor(j / 3)} val: ${board[i][j]}`)
+               ) {
                     return false;
-                }
+               }
+               else {
+                    set.add(`row: ${i} val: ${board[i][j]}`);
+                    set.add(`col: ${j} val: ${board[i][j]}`);
+                    set.add(`subBox: ${Math.floor(i / 3)} - ${Math.floor(j / 3)} val: ${board[i][j]}`);
+               }
             }
         }
     }
-
     return true;
-
 };
