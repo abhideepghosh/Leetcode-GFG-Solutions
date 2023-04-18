@@ -31,3 +31,32 @@ var rotate = function(matrix) {
         reverse(matrix[i]);
     }
 };
+
+
+
+
+// Another Approach
+/**
+ * @param {number[][]} matrix
+ * @return {void} Do not return anything, modify matrix in-place instead.
+ */
+var rotate = function(matrix) {
+    for(let i=0; i<matrix.length; i++) {
+        for(let j=i; j<matrix[i].length; j++) {
+            const temp = matrix[i][j];
+            matrix[i][j] = matrix[j][i];
+            matrix[j][i] = temp;
+        }
+    }
+
+    const swap = (nums, i, j) => {
+        const temp = nums[i];
+        nums[i] = nums[j];
+        nums[j] = temp;
+    }
+
+    for(let i=0; i<matrix.length; i++) {
+        matrix[i].reverse();
+    }
+
+};
