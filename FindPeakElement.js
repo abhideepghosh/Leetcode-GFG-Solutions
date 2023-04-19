@@ -15,6 +15,21 @@ var findPeakElement = function(nums) {
     return start;
 }
 
+
+// Another Optimized Approach
+var peakIndexInMountainArray = function(nums) {
+    let start = 0, end = nums.length - 1;
+    while(start <= end) {
+        const mid = start + Math.floor((end - start) / 2);
+        if(nums[mid] > nums[mid + 1]) end = mid - 1;
+        else start = mid + 1;
+    }
+    return start;
+};
+
+
+
+
 /*
 // Brute Force TC: O(logn)
 var findPeakElement = function(nums) {
