@@ -1,3 +1,4 @@
+// Optimized Solution 1
 /**
  * @param {number[]} nums1
  * @param {number} m
@@ -19,4 +20,23 @@ var merge = function(nums1, m, nums2, n) {
             m--;
         }
     }
+};
+
+// Optimized Solution 2 - Clean Code
+/**
+ * @param {number[]} nums
+ * @param {number} val
+ * @return {number}
+ */
+var removeElement = function(nums, val) {
+    let index = 0;
+    nums.forEach((el, i) => {
+        if(el !== val) {
+            const temp = nums[index];
+            nums[index] = el;
+            nums[i] = temp;
+            index++;
+        }
+    });
+    return index;
 };
