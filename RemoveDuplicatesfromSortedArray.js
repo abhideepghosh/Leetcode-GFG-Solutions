@@ -11,3 +11,21 @@ var removeDuplicates = function(nums) {
     }
     return index;
 };
+
+// Another Solution
+/**
+ * @param {number[]} nums
+ * @return {number}
+ */
+var removeDuplicates = function(nums) {
+    let index = 1;
+    let currentElement = nums[0];
+    nums.forEach((el, i) => {
+        if(el !== currentElement) {
+            currentElement = el;
+            nums[index] = el;
+            index++;
+        }
+    });
+    return index;
+};
