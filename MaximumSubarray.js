@@ -3,11 +3,10 @@
  * @return {number}
  */
 var maxSubArray = function(nums) {
-    let maxSum = -Infinity;
-    let sum = 0;
-    nums.forEach((num) => {
-        sum < 0 ? sum = num : sum += num;
-        maxSum = Math.max(sum, maxSum);
+    let currentSum = 0, maxSum = nums[0];
+    nums.forEach((currentElement, i) => {
+        currentSum <= 0 ? currentSum = currentElement : currentSum  += currentElement;
+        maxSum = Math.max(maxSum, currentSum); 
     });
     return maxSum;
 };
