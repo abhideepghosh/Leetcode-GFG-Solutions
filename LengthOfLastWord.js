@@ -3,5 +3,5 @@
  * @return {number}
  */
 var lengthOfLastWord = function(s) {
-    return s.trim().split(" ").splice(-1,1).join('').length;
+    return s.trim().split(" ").at(-1).length;
 };
