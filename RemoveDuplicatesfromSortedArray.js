@@ -1,3 +1,20 @@
+// Optimized Solution TC: O(N) SC: O(1)
+/**
+ * @param {number[]} nums
+ * @return {number}
+ */
+var removeDuplicates = function(nums) {
+    let i = 0;
+    nums.forEach(num => {
+        if(i === 0 || num !== nums[i - 1]) {
+            nums[i] = num;
+            i++; 
+        }
+    });
+    return i;
+};
+
+
 /**
  * @param {number[]} nums
  * @return {number}
