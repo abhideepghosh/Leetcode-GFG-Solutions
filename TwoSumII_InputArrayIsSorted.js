@@ -3,14 +3,13 @@
  * @param {number} target
  * @return {number[]}
  */
-
-
-var twoSum = function(numbers, target) {
-    let start = 0, end = numbers.length - 1;
+ // TC: O(logn) SC: O(1)
+var twoSum = function(nums, target) {
+    let start = 0, end = nums.length - 1;
     while(start < end) {
-        if(numbers[start] + numbers[end] === target) return [start + 1, end + 1];        
-        else if(numbers[start] + numbers[end] < target) start++;
+        if(nums[start] + nums[end] === target) return [start + 1, end + 1];
+        else if(nums[start] + nums[end] < target) start++;
         else end--;
     }
-    return [-1, -1];    
+    return [-1, -1];
 };
