@@ -1,4 +1,3 @@
-// Optimized Solution 1
 /**
  * @param {number[]} nums1
  * @param {number} m
@@ -6,37 +5,28 @@
  * @param {number} n
  * @return {void} Do not return anything, modify nums1 in-place instead.
  */
+// TC: O(N) SC: O(1) Clean Code
 var merge = function(nums1, m, nums2, n) {
-    m--;
-    n--;
-    for(let i=nums1.length - 1; i >=0; i--) {
-        if(n < 0) return;
-        if((m < 0 && i >= 0) || (nums1[m] < nums2[n])) {
-            nums1[i] = nums2[n];
-            n--;
+
+    if(m === 0) {
+        for(let i=0; i<nums1.length; i++) nums1[i] = nums2[i];
+        return;
+    }
+
+    let nums1Index = m - 1;
+    let nums2Index = n - 1;
+    let numsIndex = nums1.length - 1;
+    while(numsIndex >= 0 || nums1Index >= 0 || nums2Index >= 0) {
+        
+        const nums1Val = nums1Index >= 0 ? nums1[nums1Index] : -Infinity;
+        const nums2Val = nums2Index >= 0 ? nums2[nums2Index] : -Infinity;
+        
+        if(nums1Val < nums2Val) {
+            nums1[numsIndex--] = nums2Val;
+            nums2Index--;
         }
         else {
-            nums1[i] = nums1[m];
-            m--;
+            nums1[numsIndex--] = nums1Val;
+            nums1Index--;
         }
     }
-};
-
-// Optimized Solution 2 - Clean Code
-/**
- * @param {number[]} nums
- * @param {number} val
- * @return {number}
- */
-var removeElement = function(nums, val) {
-    let index = 0;
-    nums.forEach((el, i) => {
-        if(el !== val) {
-            const temp = nums[index];
-            nums[index] = el;
-            nums[i] = temp;
-            index++;
-        }
-    });
-    return index;
-};
