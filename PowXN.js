@@ -3,26 +3,24 @@
  * @param {number} n
  * @return {number}
  */
+// TC: O(logN) SC: O(1)
 var myPow = function(x, n) {
     if(n === 0) return 1;
     let isNegative = false;
     let result = 1;
     if(n < 0) {
+        isNegative = true;
         n *= -1;
-        isNegative = true; 
     }
-    while(n > 0){
-        if(n % 2 === 0){
+    while(n > 0) {
+        if(n % 2 === 0) {
             x *= x;
             n /= 2;
-        }else {
-
+        }
+        else {
             result *= x;
-            n = n - 1;
+            n -= 1;
         }
     }
-    if(isNegative){
-        result = 1/result;
-    }
-    return result;
+    return (!isNegative) ? result : 1/result;
 };
