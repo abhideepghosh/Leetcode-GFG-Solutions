@@ -1,19 +1,14 @@
-// TC: O(N) SC: O(1) (One-Loop Method)
+// TC: O(N) SC: O(1) (One Loop Method)
 var removeNthFromEnd = function(head, n) {
-   let size = 1;
-   let traverseNode = head;
-   let deleteNode = head;
-   while(traverseNode && traverseNode.next) {
-       traverseNode = traverseNode.next;
-       size++;
-       if(size > n + 1) {
-           deleteNode = deleteNode.next;
-       }
-   }
-   if(size <= n) return head.next;
-   deleteNode.next = deleteNode.next.next;
-
-   return head;
+    let size = 1;
+    let traverseNode = head, deleteNode = head;
+    while(traverseNode && traverseNode.next) {
+        traverseNode = traverseNode.next;
+        size++;
+        if(size > n + 1) deleteNode = deleteNode.next;
+    }
+    size <= n ? head = head.next : deleteNode.next = deleteNode.next.next;
+    return head;
 };
 
 // TC: O(N) SC: O(1) (Two Pointer Method)
