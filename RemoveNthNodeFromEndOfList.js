@@ -1,5 +1,19 @@
 // TC: O(N) SC: O(1) (One Loop Method)
 var removeNthFromEnd = function(head, n) {
+    let stablePointer = head;
+    let unstablePointer = head;
+    while(unstablePointer && unstablePointer.next) {
+        unstablePointer = unstablePointer.next;
+        n--;
+        if(n < 0) stablePointer = stablePointer.next;
+    }
+    n > 0 ? head = head.next : stablePointer.next = stablePointer.next.next;
+    return head;  
+};
+
+
+// TC: O(N) SC: O(1) (One Loop Method)
+var removeNthFromEnd = function(head, n) {
     let size = 1;
     let traverseNode = head, deleteNode = head;
     while(traverseNode && traverseNode.next) {
