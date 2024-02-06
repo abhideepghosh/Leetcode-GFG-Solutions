@@ -2,18 +2,16 @@
  * @param {string} s
  * @return {string}
  */
-var removeDuplicates = function(s) {
-    const stack = [s[0]];
-
-    const peek = () => stack[stack.length - 1];
-    const isEmpty = () => stack.length === 0;
-
-    for(let i=1; i<s.length; i++) {
-        if(!isEmpty() && peek() === s[i]) stack.pop();
-        else stack.push(s[i]);
-    }
-
-    const result = stack.join('');
-    return result;
+// TC: O(N) SC: O(N)
+var removeDuplicates = function(string) {
+    const isEmpty = nums => nums.length === 0;
+    const peek = nums => nums[nums.length - 1];
+    
+    const stack = [];
+    let result = '';
+    
+    for(const str of string) !isEmpty(stack) && str === peek(stack) ? stack.pop() : stack.push(str);
+    
+    return stack.join('');
 
 };
