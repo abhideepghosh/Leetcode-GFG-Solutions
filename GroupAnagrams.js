@@ -2,20 +2,19 @@
  * @param {string[]} strs
  * @return {string[][]}
  */
- // Faster: TC: O(N^2) SC: O(N)
+// TC: O(N * KlogK) SC: O(N)
 var groupAnagrams = function(strs) {
-    const hash = key => [...key].sort().join('');
     const map = new Map();
-    strs.forEach(str => {
-        const key = hash(str);
-        if(map.has(key)) {
-            map.get(key).push(str);
+    strs.forEach((str) => {
+        const sortedStr = [...str].sort().join('');
+        if(map.has(sortedStr)) {
+            map.get(sortedStr).push(str);
         }
         else {
-            map.set(key, [str]);
+            map.set(sortedStr, [str]);
         }
     });
-    return [...map.values()];
+    return Array.from(map.values());
 };
 
 /**
