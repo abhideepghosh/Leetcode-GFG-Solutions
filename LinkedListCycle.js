@@ -1,25 +1,16 @@
-/**
- * Definition for singly-linked list.
- * function ListNode(val) {
- *     this.val = val;
- *     this.next = null;
- * }
- */
-
-/**
- * @param {ListNode} head
- * @return {boolean}
- */
+// TC: O(N) SC: O(1)
 var hasCycle = function(head) {
-    if(!head || !head.next) return false;
-    let stableNode = head;
-    let unstableNode = head.next;
-    while(stableNode !== unstableNode) {
-        if(!stableNode || !stableNode.next ||
-        !unstableNode || !unstableNode.next ||
-        !unstableNode.next.next) return false;
-        stableNode = stableNode.next;
-        unstableNode = unstableNode.next.next;
+    if(!head || !head.next) return false; // Handle empty or single-node lists
+
+    let traverseNode = head;  // Initialize slow pointer
+    let fastNode = head;      // Initialize fast pointer
+
+    while(fastNode && fastNode.next) {  // Loop until fast pointer reaches end
+        traverseNode = traverseNode.next;       // Move slow pointer one step
+        fastNode = fastNode.next.next;          // Move fast pointer two steps
+
+        if(traverseNode === fastNode) return true;  // Cycle detected
     }
-    return true;
+
+    return false;  // No cycle found
 };
