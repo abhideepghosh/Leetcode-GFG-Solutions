@@ -4,42 +4,33 @@
  */
 
 // TC: O(N) SC: O(1) (One Loop)
-const swap = (nums, i, j) => {
-    const temp = nums[i];
-    nums[i] = nums[j];
-    nums[j] = temp;
-}
-
 var sortColors = function(nums) {
-    if(nums.length === 1) return;
-    let i = 0, zeroIndex = 0, twoIndex = nums.length - 1;
-    while(i <= twoIndex) {
-        if(nums[zeroIndex] === 0) while(nums[zeroIndex] === 0) {
-            zeroIndex++;
-            i++;
-        }
-        if(nums[twoIndex] === 2) while(nums[twoIndex] === 2) twoIndex--;
-        if(i > twoIndex) break;
-        if(nums[i] === 0) {
-            swap(nums, i, zeroIndex);
-            if(nums[i] === 2) {
-                swap(nums, i, twoIndex);
-                twoIndex--;
-            }
-            i++;
-            zeroIndex++;
-        }
-        else if(nums[i] === 2) {
-            swap(nums, i, twoIndex);
-            if(nums[i] === 0) {
-                swap(nums, i, zeroIndex);
-                zeroIndex++;
-            }
-            i++;
+    // Helper function to swap elements in the array 
+    const swap = (nums, i, j) => {
+        const temp = nums[i];
+        nums[i] = nums[j];
+        nums[j] = temp;
+    }
+
+    // Pointers to track boundaries of 0s, 1s, and 2s
+    let zeroIndex = 0, twoIndex = nums.length - 1; 
+    let currentIndex = 0;
+
+    // Main sorting loop (iterate until currentIndex exceeds the right boundary)
+    while (currentIndex <= twoIndex) {
+        if (nums[currentIndex] === 0) {
+            // Swap with element at zeroIndex and advance both zeroIndex and currentIndex
+            swap(nums, currentIndex, zeroIndex);
+            currentIndex++;
+            zeroIndex++; 
+        } else if (nums[currentIndex] === 2) {
+            // Swap with element at twoIndex and decrement twoIndex 
+            swap(nums, currentIndex, twoIndex);
             twoIndex--;
-        }
-        else {
-            i++;
+        } else { 
+            // Current element is 1, simply advance currentIndex
+            currentIndex++;
         }
     }
 };
+
