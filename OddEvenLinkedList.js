@@ -23,3 +23,33 @@ var oddEvenList = function(head) {
     odd.next = evenHead;
     return head;
 };
+
+
+// TC: O(N) SC: O(N) Brute Force Solution
+/**
+ * @param {ListNode} head
+ * @return {ListNode}
+ */
+var oddEvenList = function(head) {
+    let traverseNode = head;
+    const oddList = new ListNode(0);
+    const evenList = new ListNode(0);
+    let oddPointer = oddList;
+    let evenPointer = evenList;
+    let count = 1;
+    while(traverseNode) {
+        if(Math.floor(count % 2) === 0) {
+            evenPointer.next = new ListNode(traverseNode.val);
+            evenPointer = evenPointer.next;
+        }
+        else {
+            oddPointer.next = new ListNode(traverseNode.val);
+            oddPointer = oddPointer.next;
+        }
+        count++;
+        traverseNode = traverseNode.next;
+    }
+    oddPointer.next = evenList.next;
+    return oddList.next;
+
+};
