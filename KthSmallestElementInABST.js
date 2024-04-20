@@ -32,17 +32,17 @@ var kthSmallest = function(root, k) {
 // TC: O(N) SC: O(N)
 var kthSmallest = function(root, k) {
     let result = 0;
-    let count = 0;
-    const inorder = (root) => {
+    let counter = 0;
+    const modifiedInorder = (root) => {
         if(!root) return;
-        const left = inorder(root.left);
-        count++;
-        if(count === k) {
+        modifiedInorder(root.left);
+        counter++;
+        if(counter === k) {
             result = root.val;
             return;
-        } 
-        const right = inorder(root.right);
+        }
+        modifiedInorder(root.right);
     }
-    inorder(root);
+    modifiedInorder(root);
     return result;
 };
