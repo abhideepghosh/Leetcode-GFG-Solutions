@@ -4,17 +4,15 @@
  */
 // TC: O(N) SC: O(1)
 var fib = function(n) {
-    if(n === 0) return 0;
+    if(n === 0) return n;
     if(n === 1 || n === 2) return 1;
-    let first = 1, second = 1;
-    let current = 0; 
+    let first = 1, second = 1, result = 1;
     for(let i=3; i<=n; i++) {
-        current = second + first;
+        result = first + second;
         first = second;
-        second = current;
+        second = result;
     }
-    return current;
-
+    return result;
 };
 
 // TC: O(N) SC: O(N)
