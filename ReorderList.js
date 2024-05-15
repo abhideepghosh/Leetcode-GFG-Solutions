@@ -9,45 +9,47 @@
  * @param {ListNode} head
  * @return {void} Do not return anything, modify head in-place instead.
  */
- // TC: O(N) SC: O(1)
+// TC: O(N) SC: O(1)
 var reorderList = function(head) {
-    if (!head || !head.next) return; // Handle empty or single-node lists
+    if (!head || !head.next) return;
 
-    // Helper function to reverse a linked list in-place
+    // 1. Find the middle of the linked list
+    const findMiddle = (head) => {
+        let slow = head;
+        let fast = head;
+        while (fast && fast.next) {
+            slow = slow.next;
+            fast = fast.next.next;
+        }
+        return slow;
+    };
+
+    // 2. Reverse a linked list
     const reverseList = (head) => {
-    let prev = null;
-    while (head) {
-        let next = head.next;
-        head.next = prev;
-        prev = head;
-        head = next;
-    }
-    return prev;
-}
+        let prev = null;
+        while (head) {
+            let next = head.next;
+            head.next = prev;
+            prev = head;
+            head = next;
+        }
+        return prev;
+    };
 
-    // 1. Find the Middle Node
-    let slow = head, fast = head;
-    while (fast && fast.next) {
-        slow = slow.next;
-        fast = fast.next.next;
-    }
+    const mid = findMiddle(head);
+    let secondHalf = reverseList(mid.next);
+    mid.next = null;
 
-    // 2. Reverse the Second Half
-    let secondHalf = reverseList(slow.next);
-    slow.next = null; // Detach the first half
-
-    // 3. Merge the Two Halves
     let firstHalf = head;
-    while (secondHalf) {
-        let temp1 = firstHalf.next;
-        let temp2 = secondHalf.next;
+    // 3. Merge the two halves
+    while (firstHalf && secondHalf) {
+        let firstNext = firstHalf.next;
+        let secondNext = secondHalf.next;
 
         firstHalf.next = secondHalf;
-        secondHalf.next = temp1;
+        secondHalf.next = firstNext;
 
-        firstHalf = temp1;
-        secondHalf = temp2;
+        firstHalf = firstNext;
+        secondHalf = secondNext;
     }
 };
-
-
