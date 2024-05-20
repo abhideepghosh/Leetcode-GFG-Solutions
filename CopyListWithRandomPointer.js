@@ -20,8 +20,9 @@ var copyRandomList = function(head) {
     }
     traverseNode = head;
     while(traverseNode) {
-        map.get(traverseNode).next = map.get(traverseNode.next) ?? null;
-        map.get(traverseNode).random = map.get(traverseNode.random) ?? null;
+        let copyPointer = map.get(traverseNode);
+        copyPointer.next = map.get(traverseNode.next) || null;
+        copyPointer.random = map.get(traverseNode.random);
         traverseNode = traverseNode.next;
     }
     return map.get(head);
