@@ -2,7 +2,7 @@
  * @param {string} s
  * @return {number}
  */
-// TC: O(N) SC: O(N)
+// TC: O(N) SC: O(1)
 var longestPalindrome = function(s) {
     const charFreq = new Array(52).fill(0);
     const asciiLower = 'a'.charCodeAt(0);
@@ -28,4 +28,23 @@ var longestPalindrome = function(s) {
         }
     }
     return isOdd ? maxLength + 1 : maxLength;
+};
+
+
+/**
+ * @param {string} s
+ * @return {number}
+ */
+ //TC: O(N) SC: O(N)
+var longestPalindrome = function(s) {
+    const set = new Set();
+    let maxLength = 0;
+    for(let ch of s) {
+        if(set.has(ch)) {
+            set.delete(ch);
+            maxLength += 2;
+        }
+        else set.add(ch);
+    }
+    return set.size === 0 ? maxLength : maxLength + 1;
 };
