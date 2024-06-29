@@ -10,17 +10,18 @@
  * @param {TreeNode} root
  * @return {number[]}
  */
+ // TC: O(N) SC: O(N)
 var rightSideView = function(root) {
     const result = [];
-    const createRightView = (root, result, depth) => {
+    const rightView = (root, depth) => {
         if(!root) return;
-        if(depth > result.length) {
+        if(result.length === depth) {
             result.push(root.val);
         }
-        createRightView(root.right, result, depth + 1);
-        createRightView(root.left, result, depth + 1);
+        rightView(root.right, depth + 1);
+        rightView(root.left, depth + 1);
     }
-    createRightView(root, result, 1);
+    rightView(root, 0);
     return result;
 };
 
