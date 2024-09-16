@@ -26,6 +26,46 @@ var longestPalindrome = function(s) {
 };
 
 
+
+/**
+ * @param {string} s
+ * @return {string}
+ */
+// TC: O(N^2) SC: O(1)
+var longestPalindrome = function(s) {
+    let start = 0, end = 0;
+
+    const checkPalindrome = (left, right) => {
+        while(left >= 0 && right < s.length && s[left] === s[right]) {
+            left--;
+            right++;
+        }
+        return [left, right];
+    };
+
+    for(let i=0; i<s.length; i++) {
+        const oddPalindrome = checkPalindrome(i, i);
+        const evenPalindrome = checkPalindrome(i, i + 1);
+        const oddLength = oddPalindrome[1] - oddPalindrome[0];
+        const evenLength = evenPalindrome[1] - evenPalindrome[0];
+        const maxLength = Math.max(oddLength, evenLength);
+        const currentLength = end - start;
+        if(maxLength > currentLength) {
+            if(oddLength > evenLength) {
+                start = oddPalindrome[0];
+                end = oddPalindrome[1];
+            }
+            else {
+                start = evenPalindrome[0];
+                end = evenPalindrome[1];
+            }
+        }
+    }
+
+    return s.slice(start + 1, end);
+
+};
+
 // Dynamic Programming TC: O(N^2) SC: O(N^2)
 var longestPalindrome = function(s) {
     // Initialization
