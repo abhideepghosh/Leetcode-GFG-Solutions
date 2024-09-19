@@ -2,42 +2,42 @@
  * @param {string[]} strs
  * @return {string[][]}
  */
-// TC: O(N * KlogK) SC: O(N)
+ // TC: O(N * N) SC: O(N * K)
 var groupAnagrams = function(strs) {
-    const map = new Map();
-    strs.forEach((str) => {
-        const sortedStr = [...str].sort().join('');
-        if(map.has(sortedStr)) {
-            map.get(sortedStr).push(str);
+    const anagramMap = new Map();
+    strs.forEach((el) => {
+        const count = new Array(26).fill(0);
+        for(let i=0; i<el.length; i++) {
+            count[el.charCodeAt(i) - 'a'.charCodeAt(0)]++;
+        }
+        const anagram = count.join('-');
+        if(anagramMap.has(anagram)) {
+            anagramMap.get(anagram).push(el);
         }
         else {
-            map.set(sortedStr, [str]);
+            anagramMap.set(anagram, [el]);
         }
-    });
-    return Array.from(map.values());
-};
+    })
+    return [...anagramMap.values()];
+
 
 /**
  * @param {string[]} strs
  * @return {string[][]}
  */
- // TC: O(N^2) SC: O(N)
+ // TC: O(N * KlogK) SC: O(N * K)
 var groupAnagrams = function(strs) {
-    const words = strs.map((word) => [...word].sort().join(''));
-    const result = [];
-    const set = new Set();
-    for(let i=0; i<words.length; i++) {
-        if(!set.has(i)) {
-            const anagrams = [strs[i]];
-            set.add(i);
-            for(let j=i+1; j<words.length; j++) {
-                if(words[i] === words[j]) {
-                    anagrams.push(strs[j]);
-                    set.add(j);
-                }
-            }
-            result.push(anagrams);
+    const anagramMap = new Map();
+    strs.forEach((el) => {
+        const anagram = el.split('').sort().join('');
+        if(anagramMap.has(anagram)) {
+            anagramMap.get(anagram).push(el);
         }
-    }
-    return result;
+        else {
+            anagramMap.set(anagram, [el]);
+        }
+    })
+    return [...anagramMap.values()];
 };
+
+
