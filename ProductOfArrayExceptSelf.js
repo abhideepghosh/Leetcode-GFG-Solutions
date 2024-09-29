@@ -2,18 +2,19 @@
  * @param {number[]} nums
  * @return {number[]}
  */
-// TC: O(N) SC: O(1)
+ // TC: O(N) SC: O(1)
 var productExceptSelf = function(nums) {
-    const result = [1];
-    let rightProduct = 1;
-    for(let i=1; i<nums.length; i++) {
-        result[i] = result[i - 1] * nums[i - 1];
-    }
-    for(let i=nums.length-1; i>=0; i--) {
-        result[i] *= rightProduct;
-        rightProduct *= nums[i];
-    }
-    return result;
+     const result = [1];
+     let right = 1;
+     for(let i=0;i<nums.length - 1; i++) {
+        const product = nums[i] * result[i];
+        result.push(product);
+     }
+     for(let i=nums.length - 1; i>=0; i--) {
+        result[i] = right * result[i];
+        right *= nums[i];
+     }
+     return result;
 };
 
 
