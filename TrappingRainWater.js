@@ -1,45 +1,53 @@
 /**
- * @param {number[]} height
- * @return {number}
+ * @param {number[]} 
+ * @return {number} 
  */
-//TC: O(N) SC: O(1)
+// TC: O(N) SC: O(1)
 var trap = function(height) {
-    // Pointers to track the boundaries of our search area
-    let left = 0, right = height.length - 1;
+    // Initialize two pointers, one at the beginning and one at the end.
+    let left = 0;
+    let right = height.length - 1;
 
-    // Variables to store the maximum height seen from the left and right sides
-    let leftMax = 0, rightMax = 0; 
+    // Initialize variables to keep track of the maximum height encountered from each side.
+    let leftMax = 0;
+    let rightMax = 0;
 
-    // Variable to accumulate the trapped water 
+    // Initialize the total trapped water to zero.
     let totalWater = 0;
 
-    // Iterate while the left and right pointers haven't crossed 
+    // Iterate while the left pointer is less than the right pointer.
     while (left < right) {
-        // If the current bar on the left is shorter than the bar on the right...
+        // If the current left bar is smaller than the current right bar,
+        // it means the left bar determines the trapping capacity.
         if (height[left] < height[right]) {
-            // Update leftMax if necessary
-            leftMax = Math.max(leftMax, height[left]);
-
-            // Potential water above the current bar: leftMax - height[left]
-            totalWater += leftMax - height[left];
-
-            // Move the left pointer inward
+            // If the current left bar is greater than or equal to the current leftMax,
+            // update leftMax.
+            if (height[left] >= leftMax) {
+                leftMax = height[left];
+            } else {
+                // Otherwise, add the trapped water to the total.
+                // The water trapped is the difference between the current leftMax and the current left bar's height.
+                totalWater += leftMax - height[left];
+            }
+            // Move the left pointer one step to the right.
             left++;
-        } else { 
-            // Update rightMax if necessary
-            rightMax = Math.max(rightMax, height[right]);
-
-            // Potential water above the current bar: rightMax - height[right]
-            totalWater += rightMax - height[right];
-
-            // Move the right pointer inward
-            right--; 
+        } else {
+            // If the current right bar is smaller than or equal to the current left bar,
+            // it means the right bar determines the trapping capacity.
+            // Apply the same logic as above but for the right side.
+            if (height[right] >= rightMax) {
+                rightMax = height[right];
+            } else {
+                totalWater += rightMax - height[right];
+            }
+            // Move the right pointer one step to the left.
+            right--;
         }
     }
 
+    // Return the total trapped water.
     return totalWater;
 };
-
 
 
 //TC: O(N) SC: O(N)
