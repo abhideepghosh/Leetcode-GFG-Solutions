@@ -3,25 +3,23 @@
  * @param {number} k
  * @return {void} Do not return anything, modify nums in-place instead.
  */
+// TC: O(N) SC: O(1)
 var rotate = function(nums, k) {
-    
-    const swap = (nums, i, j) => {
-        const temp = nums[i];
-        nums[i] = nums[j];
-        nums[j] = temp;
-    }
-
-    const reverse = (nums, start, end) => {
+    const rotate = (start, end) => {
         while(start < end) {
-            swap(nums, start, end);
+            const temp = nums[start];
+            nums[start] = nums[end];
+            nums[end] = temp;
             start++;
             end--;
         }
     }
-
-k = k % nums.length;
-reverse(nums, 0, nums.length - k - 1);
-reverse(nums, nums.length - k, nums.length - 1);
-reverse(nums, 0, nums.length - 1)
-
+    k %= nums.length;
+    const pivotIdx = nums.length - k - 1;
+    // First Rotation
+    rotate(0, pivotIdx);
+    //Second Rotation
+    rotate(pivotIdx + 1, nums.length - 1);
+    // Final Rotation
+    rotate(0, nums.length - 1);
 };
