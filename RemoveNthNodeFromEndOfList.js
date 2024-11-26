@@ -14,14 +14,18 @@ var removeNthFromEnd = function(head, n) {
 
 // TC: O(N) SC: O(1) (One Loop Method)
 var removeNthFromEnd = function(head, n) {
-    let size = 1;
-    let traverseNode = head, deleteNode = head;
-    while(traverseNode && traverseNode.next) {
+    let gap = 0;
+    let traverseNode = head;
+    let deleteNode = head;
+    while(traverseNode) {
         traverseNode = traverseNode.next;
-        size++;
-        if(size > n + 1) deleteNode = deleteNode.next;
+        gap++;
+        if(gap > n + 1) {
+            deleteNode = deleteNode.next;
+        }
     }
-    size <= n ? head = head.next : deleteNode.next = deleteNode.next.next;
+    if(gap < n + 1) head = head.next;
+    else deleteNode.next = deleteNode.next.next;
     return head;
 };
 
