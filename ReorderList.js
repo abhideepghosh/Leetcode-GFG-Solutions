@@ -53,3 +53,42 @@ var reorderList = function(head) {
         secondHalf = secondNext;
     }
 };
+
+
+
+// Similar Solution TC: O(N) SC: O(1)
+var reorderList = function(head) {
+    let firstHalf = head;
+    let secondHalf = ((head) => {
+        // Finding the Mid Node
+        let midNode = head;
+        let fastNode = head;
+        while(fastNode && fastNode.next) {
+            midNode = midNode.next;
+            fastNode = fastNode.next.next;
+        }
+        // Breaking the linked list into 2 seperate lists
+        let breakPoint = midNode;
+        midNode = midNode.next;
+        breakPoint.next = null;
+        // Reversing the Second Half of the linked list
+        let prev = null;
+        while(midNode) {
+            const next = midNode.next;
+            midNode.next = prev;
+            prev = midNode;
+            midNode = next;
+        }
+        return prev;
+    })(head);
+    let firstHead = firstHalf;
+    let secondHead = secondHalf;
+    while(firstHead && secondHead) {
+        const firstNext = firstHead.next;
+        const secondNext = secondHead.next;
+        firstHead.next = secondHead;
+        secondHead.next = firstNext;
+        firstHead = firstNext;
+        secondHead = secondNext;
+    }
+};
