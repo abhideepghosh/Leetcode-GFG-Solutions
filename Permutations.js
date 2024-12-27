@@ -2,6 +2,7 @@
  * @param {number[]} nums
  * @return {number[][]}
  */
+// TC: O(n*n!) SC: O(n*n!)
 var permute = function(nums) {
     const result = [];
     const backtrack = (store, freq) => {
