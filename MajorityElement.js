@@ -3,19 +3,10 @@
  * @return {number}
  */
 var majorityElement = function(nums) {
-    let freq = 0;
-    let majorityElement = 0;
+    let count = 0, majEl = null;
     nums.forEach((num) => {
-        if(freq === 0) {
-            majorityElement = num;
-            freq++;
-        }
-        else if(majorityElement === num) {
-            freq++;
-        }
-        else {
-            freq--;
-        }
+        if(count === 0) majEl = num;
+        count += (majEl === num) ? 1 : -1; 
     });
-    return majorityElement;
+    return majEl;
 };
