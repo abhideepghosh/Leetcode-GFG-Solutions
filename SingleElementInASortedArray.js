@@ -2,7 +2,24 @@
  * @param {number[]} nums
  * @return {number}
  */
-// TC: O(logN) SC: O(1) Optimized Solution
+ // TC: O(logN) SC: O(1) Optimized Solution
+var singleNonDuplicate = function(nums) {
+    let start = 0, end = nums.length - 1;
+    while(start <= end) {
+        let mid = start + Math.floor((end - start) / 2);
+        if(mid % 2 === 1) mid--;
+        if(nums[mid] === nums[mid + 1]) start = mid + 2;
+        else end = mid - 2;
+    }
+    return nums[start];
+};
+
+
+/**
+ * @param {number[]} nums
+ * @return {number}
+ */
+// TC: O(logN) SC: O(1) Optimal Solution
 var singleNonDuplicate = function(nums) {
     let start = 0, end = nums.length - 1;
     while(start <= end) {
@@ -18,7 +35,7 @@ var singleNonDuplicate = function(nums) {
     return -1;
 };
 
-// TC: O(logN) SC: O(1) Optimized  Solution (Binary Search)
+// TC: O(logN) SC: O(1) Optimal  Solution (Binary Search)
 var singleNonDuplicate = function(nums) {
     let start = 0, end = nums.length - 1;
     while(start < end) {
