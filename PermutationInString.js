@@ -3,6 +3,46 @@
  * @param {string} s2
  * @return {boolean}
  */
+// TC: O(N) SC: O(1)
+var checkInclusion = function(s1, s2) {
+    const getAsciiIdx = (ch) => ch.charCodeAt(0) - 'a'.charCodeAt(0);
+    const compareCharacters = (nums1, nums2) => {
+        for (let i = 0; i < 26; i++) {
+            if (nums1[i] !== nums2[i]) return false;
+        }
+        return true;
+    }
+
+    if (s1.length > s2.length) return false;
+
+    const s1Count = new Array(26).fill(0);
+    const s2Count = new Array(26).fill(0);
+
+    for (let i = 0; i < s1.length; i++) {
+        s1Count[getAsciiIdx(s1[i])]++;
+        s2Count[getAsciiIdx(s2[i])]++;
+    }
+
+    if (compareCharacters(s1Count, s2Count)) return true;
+
+    for (let i = s1.length; i < s2.length; i++) {
+        s2Count[getAsciiIdx(s2[i])]++;
+        s2Count[getAsciiIdx(s2[i - s1.length])]--;
+
+        if (compareCharacters(s1Count, s2Count)) return true;
+    }
+
+    return false;
+};
+
+
+
+
+/**
+ * @param {string} s1
+ * @param {string} s2
+ * @return {boolean}
+ */
 var checkInclusion = function(s1, s2) {
     if(s1.length > s2.length) return false;
     const s1Map = new Array(26).fill(0);
