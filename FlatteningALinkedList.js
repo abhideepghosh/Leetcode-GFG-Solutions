@@ -1,6 +1,6 @@
-//User function Template for javascript
-
-/*LINKED LIST NODE
+// I coded an Iterative solution for this problem recently. It saves stack space.
+// TC:O(N^2) SC: O(1)
+/*
 class Node {
   constructor(x){
     this.data = x;
@@ -9,6 +9,47 @@ class Node {
   }
 }
 */
+
+/**
+ * @param {Node} head
+ * @return {Node}
+ */
+
+class Solution {
+    flatten(root) {
+        const merge = (l1, l2) => {
+            const result = new Node(0);
+            let resultPointer = result;
+            while(l1 && l2) {
+                if(l1.data < l2.data) {
+                    resultPointer.bottom = l1;
+                    l1 = l1.bottom;
+                }
+                else {
+                    resultPointer.bottom = l2;
+                    l2 = l2.bottom;
+                }
+                resultPointer = resultPointer.bottom;
+            }
+            if(l1) {
+                resultPointer.bottom = l1;
+            }
+            if(l2) {
+                resultPointer.bottom = l2;
+            }
+            return result.bottom;
+        }
+        // code here
+        let result = root;
+        while(root.next) {
+            result = merge(result, root.next);
+            root = root.next;
+        }
+        return result;
+    }
+}
+
+
 
 /**
  * @param {Node} head
